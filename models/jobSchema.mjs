@@ -1,0 +1,60 @@
+import mongoose from 'mongoose'
+
+const schema = new mongoose.Schema({
+    title:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    company:{
+        type:String,
+        required:true,
+        trim:true 
+    },
+    description:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    requirements:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    responsibilities:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    location:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    jobType:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    workMode:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    salaryRange:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    deadline:{
+        type:Date,
+        required:true
+    },
+    status:{
+        type:String,
+        required:true,
+        trim:true
+    }
+})
+
+export const job = mongoose.model("jobs",schema)
