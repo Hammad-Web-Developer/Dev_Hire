@@ -1,5 +1,6 @@
 import { asyncWrapper } from "../middlewares/asyncWrapper.mjs";
 import { recruit } from "../models/recruitSchemas.mjs";
+import { job } from "../models/jobSchema.mjs"
 import codes from "http-status-codes"
 import error from 'http-errors'
 import bcrypt from 'bcryptjs'
@@ -27,6 +28,21 @@ export const recruitLogin = asyncWrapper( async(req,res)=>{
     const auth = await bcrypt.compare(password , user.password)
     if (!auth)
         throw new error(codes.UNAUTHORIZED,"Invalid credentials!")
-    const token = jwt.sign({username:user.username,email:email},process.env.JWT_KEY,{expiresIn:"1d"})
+    const token = jwt.sign({username:user.username,email:email,role:"employee"},process.env.JWT_KEY,{expiresIn:"1d"})
     res.status(codes.OK).send({_id:user.id,username:user.username,email:user.email,jwt:token})
+})
+
+export const getAllJobs = asyncWrapper( async(req,res)=>{
+    const {category,type,mode,location} = req.query
+    const filter = {}
+    if (category)
+        filter.description = {$regex:category,$options:"i"}
+    if (type)
+        filter.jobType = {$regex:type,$options:"i"}
+    if (mode)
+        filter.jobMode = {$regex:mode,$options:"i"}
+    if (location)
+        filter.location = location
+    const filteredData = await job.find(filter)
+    res.status(codes.OK).send({jobs:filteredData})
 })

@@ -30,9 +30,12 @@ Main features
 
 App Status :-
 
+Authentication & Authorization working
 Signup for recruit and hr is working
 Login for recruit and hr is working
+Company can post job
+Recruit can view/filter jobs
 
 Pickup :-
 
-Schema for job is defined
+applySchema.mjs

@@ -1,3 +1,3 @@
-export const errorHandler = (err,req,res)=>{
-    res.status(req.status).send(req.message)
+export const errorHandler = (err,req,res,next)=>{
+    res.status(err.status || 500).send(err.message)
 }
