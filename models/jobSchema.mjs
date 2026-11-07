@@ -1,6 +1,11 @@
 import mongoose from 'mongoose'
 
 const schema = new mongoose.Schema({
+    companyId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"hrs",
+        required:true
+    },
     title:{
         type:String,
         required:true,

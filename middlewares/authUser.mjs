@@ -11,5 +11,6 @@ export const authUser = async(req,res,next)=>{
     if (!status)
         throw new error(codes.UNAUTHORIZED,"Invalid sesssion token!")
     req.role = status.role
+    req.id = status._id
     next()
 }
