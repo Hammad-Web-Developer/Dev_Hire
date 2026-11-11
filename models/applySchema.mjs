@@ -47,7 +47,7 @@ const schema = new mongoose.Schema({
     },
     status:{
         type: String,
-        default: "Applied"
+        default: "applied"
     }
 })
 

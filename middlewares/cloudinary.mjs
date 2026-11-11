@@ -36,3 +36,5 @@ export const uploadToCloudinary = async(buffer) => {
         stream.end(buffer)
     })
 }
+
+export default cloudinary

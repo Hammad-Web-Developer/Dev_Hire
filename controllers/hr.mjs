@@ -56,5 +56,25 @@ export const jobSpecificApplications = asyncWrapper( async(req,res)=>{
     const applications = await apply.find({jobId: jobId})
     if (applications?.length === 0)
         return res.status(codes.OK).send("No applications yet!")
-    res.status(200).send(applications)
+    res.status(codes.OK).send(applications)
+})
+
+export const updateStatus = asyncWrapper( async(req,res)=>{
+    const application = await apply.findOne({_id : req.params.id})
+    if (!application)
+        return res.status(codes.OK).send("Invalid application id!")
+    const verify = await job.findOne({companyId:req.id,_id:application.jobId})
+    if (!verify)
+        return res.status(codes.UNAUTHORIZED).send("User unauthorized!")
+    const updateJob = await apply.findByIdAndUpdate(
+        req.params.id,
+        {
+            status : req.body.status
+        },
+        {
+            returnDocument : 'after',
+            runValidators : true
+        }
+    )
+    res.status(codes.OK).send(updateJob)
 })

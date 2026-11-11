@@ -5,7 +5,7 @@ import codes from "http-status-codes"
 import error from 'http-errors'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { uploadToCloudinary } from "../middlewares/cloudinary.mjs";
+import cloudinary, { uploadToCloudinary } from "../middlewares/cloudinary.mjs";
 import { apply } from "../models/applySchema.mjs";
 
 export const recruitSignup = asyncWrapper( async(req,res) => {
@@ -67,6 +67,7 @@ export const applyForJob = asyncWrapper( async(req,res)=>{
     const duplicate = await apply.find({jobId:req.body.jobId,applicantId:req.id})
     if (duplicate?.length !== 0)
         throw new error(codes.BAD_REQUEST,"Duplicate application request!")
+    delete req.body.status
     const application = await apply.create({
         jobId : req.body.jobId,
         applicantId: req.id,
@@ -88,4 +89,36 @@ export const appliedJobs = asyncWrapper( async(req,res)=>{
     if (data?.length === 0)
         return res.status(codes.OK).send("No jobs applied!")
     res.status(codes.OK).send(data)
+})
+
+export const updateApplication = asyncWrapper( async(req,res)=>{
+    const verify = await apply.findOne({applicantId:req.id,_id:req.params.id})
+    if (!verify)
+        return res.status(codes.UNAUTHORIZED).send("Invalid application or user id!")
+    if (verify.status !== "applied")
+        return res.status(codes.NOT_ACCEPTABLE).send("Action not allowed!")
+    if (req.file){
+        const result = await uploadToCloudinary(req.file.buffer)
+        if (!result)
+            throw new error(codes.BAD_REQUEST,"Resume not uploaded!")
+        req.body.resume = {
+            public_id: result.public_id,
+            secure_url: result.secure_url,
+            original_filename: result.original_filename
+        }
+        await cloudinary.uploader.destroy(
+        verify.resume.public_id,
+        { resource_type: 'raw' }
+)
+    }
+    delete req.body.status
+        const updateApplication = await apply.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                returnDocument : 'after',
+                runValidators : true
+            }
+        )
+        res.status(codes.OK).send(updateApplication)
 })

@@ -35,9 +35,10 @@ Signup for recruit and hr is working
 Login for recruit and hr is working
 Company can post job
 Recruit can view/filter jobs
-Recruit can get one job
+Recruit can view one job
 Recruit can apply and upload pdf resume
 Company can view it's posted jobs
 Recruits can get applied jobs
 Company can view applications for a job
-
+Company can update application status
+Recruit can edit applied applications
