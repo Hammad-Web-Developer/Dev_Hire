@@ -1,0 +1,17 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#07111f"/>
+
+  <!-- D monogram -->
+  <path d="M13 12h17c14 0 23 8 23 20S44 52 30 52H13V12zm12 10v20h5c7 0 11-4 11-10s-4-10-11-10h-5z"
+        fill="#f8fafc" fill-rule="evenodd"/>
+
+  <!-- Green forward motion -->
+  <path d="M8 48L56 20 49 34 8 48z" fill="#10d98a"/>
+
+  <!-- Briefcase -->
+  <rect x="25" y="27" width="17" height="12" rx="2"
+        fill="#07111f" stroke="#10d98a" stroke-width="2"/>
+  <path d="M30 27v-3h7v3" fill="none"
+        stroke="#10d98a" stroke-width="2" stroke-linecap="round"/>
+</svg>

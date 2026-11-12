@@ -1,4 +1,6 @@
 import express from 'express'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { connect } from 'mongoose'
 import "dotenv/config"
 import { recruitRouter } from './routes/recruitRouter.mjs'
@@ -7,6 +9,7 @@ import { hrRouter } from './routes/hrRouter.mjs'
 import { errorHandler } from './middlewares/errorHandler.mjs'
 
 const app = express()
+app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)),"public")))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use("/recruit",recruitRouter)

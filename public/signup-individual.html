@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Individual Sign Up | Dev Hire</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body class="auth-page">
+  <a class="brand auth-brand" href="index.html"><span class="brand-mark">D</span> Dev Hire</a>
+  <main class="auth-card">
+    <a class="back-link" href="index.html">← Back to home</a>
+    <p class="eyebrow">CANDIDATE ACCOUNT</p>
+    <h1>Create your account</h1>
+    <p class="form-intro">Sign up as an individual to explore job opportunities.</p>
+    <form action="#" method="post">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" placeholder="Your username" autocomplete="username" required>
+
+      <label for="email">Email address</label>
+      <div class="input-action">
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="button button-small button-secondary" type="button">Send code</button>
+      </div>
+
+      <label for="passcode">Verification code</label>
+      <input id="passcode" name="passcode" type="text" inputmode="numeric" placeholder="Enter the code sent to your email" required>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" placeholder="Create a password" autocomplete="new-password" required>
+
+      <button class="button button-primary button-full" type="submit">Sign up</button>
+    </form>
+    <p class="switch-auth">Already registered? <a href="login-individual.html">Log in</a></p>
+    <p class="fine-print">By signing up, you agree to the terms and privacy policy.</p>
+  </main>
+</body>
+</html>
