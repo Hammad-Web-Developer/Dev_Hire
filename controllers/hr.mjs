@@ -2,18 +2,27 @@ import { asyncWrapper } from "../middlewares/asyncWrapper.mjs";
 import { hr } from "../models/hrSchame.mjs";
 import { job } from "../models/jobSchema.mjs"
 import { apply } from "../models/applySchema.mjs"
+import { sendOtp } from "../middlewares/sendAndVerifyOtp.mjs";
 import codes from 'http-status-codes'
 import error from 'http-errors'
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken'
 
+export const sendOtpEmail = asyncWrapper(async(req,res)=>{
+    const email = req.body.companyEmail
+    const purpose = req.body.purpose
+    if (purpose !== "company-sign-up" && purpose !== "reset-password")
+        throw new error(codes.BAD_REQUEST,"Action not allowed!")
+    await sendOtp(email,purpose)
+    res.status(codes.OK).send("Otp sent. You have 60 seconds to complete sign-up!")
+})
+
 export const hrSignup = asyncWrapper(async(req,res) => {
-    const {username,companyEmail,passcode,password,company} = req.body;
+    const {username,companyEmail,password,company} = req.body
         let hashedPassword = await bcrypt.hash(password,10)
         const hrUser = await hr.create({
             "username":username,
             "companyEmail":companyEmail,
-            "passcode":passcode,
             "password":hashedPassword,
             "company":company
         });

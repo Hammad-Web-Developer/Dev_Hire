@@ -7,14 +7,23 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import cloudinary, { uploadToCloudinary } from "../middlewares/cloudinary.mjs";
 import { apply } from "../models/applySchema.mjs";
+import { sendOtp } from "../middlewares/sendAndVerifyOtp.mjs";
+
+export const sendOtpEmail = asyncWrapper(async(req,res)=>{
+    const email = req.body.email
+    const purpose = req.body.purpose
+    if (purpose !== "user-sign-up" && purpose !== "reset-password")
+        throw new error(codes.BAD_REQUEST,"Action not allowed!")
+    await sendOtp(email,purpose)
+    res.status(codes.OK).send("Otp sent. You have 60 seconds to complete sign-up!")
+})
 
 export const recruitSignup = asyncWrapper( async(req,res) => {
-    const {username,email,passcode,password} = req.body;
+    const {username,email,password} = req.body
     let hashedPassword = await bcrypt.hash(password,10)
     const newRecruit = await recruit.create({
         "username":username,
         "email":email,
-        "passcode":passcode,
         "password":hashedPassword
     });
     res.status(codes.CREATED).json({userCreated:newRecruit})

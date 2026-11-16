@@ -28,10 +28,10 @@ Main features
 - Recruitment statistics.
 
 
-App Status :-
+Working :-
 
 Authentication & Authorization working
-Signup for recruit and hr is working
+Signup for recruit and hr is working (With otp functionality)
 Login for recruit and hr is working
 Company can post job
 Recruit can view/filter jobs
@@ -42,3 +42,8 @@ Recruits can get applied jobs
 Company can view applications for a job
 Company can update application status
 Recruit can edit applied applications
+
+
+Next Session :-
+
+Connect sign-up front end to backend

@@ -16,12 +16,6 @@ const recruitSchema = new mongoose.Schema({
         trim:true,
         match:/^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/
     },
-    passcode:{
-        type:String,
-        required:true,
-        minlength:[6,"Passcode should be of 6 digits!"],
-        maxlength:[6,"Passcode should not be more than 6 digits!"]
-    },
     password:{
         type:String,
         required:true,
