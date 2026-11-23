@@ -14,7 +14,7 @@ export const sendOtpEmail = asyncWrapper(async(req,res)=>{
     if (purpose !== "company-sign-up" && purpose !== "reset-password")
         throw new error(codes.BAD_REQUEST,"Action not allowed!")
     await sendOtp(email,purpose)
-    res.status(codes.OK).send("Otp sent. You have 60 seconds to complete sign-up!")
+    res.status(codes.OK).send("Otp sent. You have 60 seconds to complete action!")
 })
 
 export const hrSignup = asyncWrapper(async(req,res) => {
@@ -35,7 +35,7 @@ export const hrLogin = asyncWrapper( async(req,res)=>{
         throw new error(codes.BAD_REQUEST,"Email and password are required!")
     const user = await hr.findOne({companyEmail:companyEmail})
     if (!user)
-        throw new error(codes.NOT_FOUND,"Email doesn't exist!")
+        throw new error(codes.NOT_FOUND,"Email is not registered!")
     const auth = await bcrypt.compare(password , user.password)
     if (!auth)
         throw new error(codes.UNAUTHORIZED,"Invalid credentials!")

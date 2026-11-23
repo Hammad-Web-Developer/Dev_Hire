@@ -7,11 +7,15 @@ import { recruitRouter } from './routes/recruitRouter.mjs'
 import { recruit } from './models/recruitSchemas.mjs'
 import { hrRouter } from './routes/hrRouter.mjs'
 import { errorHandler } from './middlewares/errorHandler.mjs'
+import { resetPassword, sendResetPasswordOtp } from './controllers/reset-password.mjs'
+import { verifyOtp } from './middlewares/sendAndVerifyOtp.mjs'
 
 const app = express()
 app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)),"public")))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
+app.post("/forgot-password",sendResetPasswordOtp)
+app.post("/reset-password",verifyOtp,resetPassword)
 app.use("/recruit",recruitRouter)
 app.use("/company",hrRouter)
 app.use(errorHandler)

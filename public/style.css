@@ -97,6 +97,29 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(118,224,19
 .form-options { display: flex; justify-content: flex-end; margin-top: 12px; font-size: 11px; }
 .switch-auth { color: var(--muted); font-size: 12px; text-align: center; margin: 22px 0 0; }
 .fine-print { color: #71809a; font-size: 10px; text-align: center; line-height: 1.6; margin: 17px 0 0; }
+.company-checkbox {
+  margin: 12px 0 18px;
+}
+
+.company-checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #dce4f2;
+  margin: 0;
+}
+
+.company-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 16px;
+  accent-color: var(--accent);
+}
 
 @media (max-width: 760px) {
   .site-header { align-items: flex-start; flex-direction: column; padding: 22px; }
@@ -110,4 +133,61 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(118,224,19
   .input-action { flex-direction: column; }
   .input-action .button { min-height: 40px; }
   .nav-links { align-items: flex-start; flex-direction: column; }
+}
+
+.toast {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
+
+    background: #76e0c2;;
+    color: black;
+    padding: 16px 22px;
+    min-width: 260px;
+
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+
+    overflow: hidden;
+    display: none;
+}
+
+.toast.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+.toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #e74c3c;
+    transform-origin: left;
+}
+
+.toast.show .toast-progress {
+    animation: progress 4s linear forwards;
+}
+
+@keyframes progress {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

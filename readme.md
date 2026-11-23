@@ -27,12 +27,15 @@ Main features
 - Application conversion rates.
 - Recruitment statistics.
 
+Full Fledged Functionality :-
+
+Sign up(s) are working
+Login(s) are working
+Reset Password is working
 
 Working :-
 
 Authentication & Authorization working
-Signup for recruit and hr is working (With otp functionality)
-Login for recruit and hr is working
 Company can post job
 Recruit can view/filter jobs
 Recruit can view one job
@@ -46,4 +49,5 @@ Recruit can edit applied applications
 
 Next Session :-
 
-Connect sign-up front end to backend
+Add and connect company dashboard
+

@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
+<div id="toast" class="toast">
+    <span id="toastMessage">An error occurred!</span>
+    <div class="toast-progress"></div>
+</div>
 <body class="auth-page">
   <a class="brand auth-brand" href="index.html"><span class="brand-mark">D</span> Dev Hire</a>
   <main class="auth-card">
@@ -14,7 +18,7 @@
     <p class="eyebrow">CANDIDATE ACCOUNT</p>
     <h1>Welcome back</h1>
     <p class="form-intro">Log in to continue to your individual dashboard.</p>
-    <form action="#" method="post">
+    <form id="recruit-login-form">
       <label for="email">Email address</label>
       <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
 
@@ -27,5 +31,7 @@
     <p class="switch-auth">New to Dev Hire? <a href="signup-individual.html">Create an account</a></p>
     <p class="fine-print"><a href="login-company.html">Log in as a company</a></p>
   </main>
+  <script src="toast.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

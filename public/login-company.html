@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
+<div id="toast" class="toast">
+    <span id="toastMessage">An error occurred!</span>
+    <div class="toast-progress"></div>
+</div>
 <body class="auth-page">
   <a class="brand auth-brand" href="index.html"><span class="brand-mark">D</span> Dev Hire</a>
   <main class="auth-card">
@@ -14,7 +18,7 @@
     <p class="eyebrow">EMPLOYER ACCOUNT</p>
     <h1>Welcome back</h1>
     <p class="form-intro">Log in to manage your company and job postings.</p>
-    <form action="#" method="post">
+    <form id="company-login-form">
       <label for="companyEmail">Company email</label>
       <input id="companyEmail" name="companyEmail" type="email" placeholder="name@company.com" autocomplete="email" required>
 
@@ -27,5 +31,7 @@
     <p class="switch-auth">Need a company account? <a href="signup-company.html">Sign up</a></p>
     <p class="fine-print"><a href="login-individual.html">Log in as an individual</a></p>
   </main>
+  <script src="toast.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -62,6 +62,7 @@ export const verifyOtp = async(req,res,next)=>{
         await data.save()
         throw new error(codes.BAD_REQUEST,"Invalid otp!")
     }
+    if (purpose !== "reset-password"){
     if (req.body.company){
         const status = await hr.findOne({companyEmail : email})
         if (status)
@@ -71,6 +72,7 @@ export const verifyOtp = async(req,res,next)=>{
     if (status)
         throw new error(codes.BAD_REQUEST,"Email already registered!")
 }
+    }
     await otpSchema.deleteOne({_id : data._id})
     next()
 }
